@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/douban/coming_soon/coming_soon",
+    "pages/index/index",
+    "pages/douban/douban",
+    "pages/douban/in_theaters/in_theaters",
+    "pages/douban/new_movies/new_movies",
+    "pages/douban/weekly/weekly",
+    "pages/douban/movie_detail/movie_detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#5ad500",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/in_theaters.png",
+        "selectedIconPath": "images/in_theaters_sel.png",
+        "text": "正在热映"
+      },
+      {
+        "pagePath": "pages/douban/coming_soon/coming_soon",
+        "iconPath": "images/coming_soon.png",
+        "selectedIconPath": "images/coming_soon_sel.png",
+        "text": "即将上映"
+      },
+      {
+        "pagePath": "pages/douban/new_movies/new_movies",
+        "iconPath": "images/new_movies.png",
+        "selectedIconPath": "images/new_movies_sel.png",
+        "text": "新片"
+      },
+      {
+        "pagePath": "pages/douban/weekly/weekly",
+        "iconPath": "images/weekly.png",
+        "selectedIconPath": "images/weekly_sel.png",
+        "text": "口碑榜"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

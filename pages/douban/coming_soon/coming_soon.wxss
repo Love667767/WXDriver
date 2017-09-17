@@ -1,0 +1,46 @@
+/* pages/douban/coming_soon/coming_soon.wxss */
+
+.scroll-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.movie-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+}
+
+.movie-image {
+  margin: 10rpx;
+  width: 160rpx;
+  height: 236rpx;
+}
+
+.movie-text {
+  margin: 10rpx;
+  align-content: center;
+  font-size: 30rpx;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.arrow {
+  padding: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+
+}
+
+
+
+
+
+
+
+
+
+
