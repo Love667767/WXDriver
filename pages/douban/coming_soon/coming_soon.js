@@ -6,6 +6,7 @@ import { request } from "../../../api/httpclient"
 
 const app = getApp();
 
+let isAllowLoadMore = false;
 /**
  * 即将上映
  */
@@ -16,34 +17,15 @@ Page({
    */
   data: {
     windowHeight: app.globalData.screenHeight,
-    movies: {}
-  },
-
-  call: function(res){
-    console.log(res)
-    wx.hideLoading();
-
+    movies: [],
+    currentPage: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true,
-    })
-
-    let that = this;
-    request(COMING_SOON, {}, function success(data) {
-      wx.hideLoading()
-      that.setData({
-        movies: data.subjects
-      })
-    }, function fail(res) {
-      wx.hideLoading()
-      console.log("__fail__", res)
-    })
+    this.requestData(false);
   },
 
   bindMovieDetail() {
@@ -52,54 +34,57 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
+  requestData: function(isRefresh) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
+    })
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    if (this.data.movies) {
-      console.log("onShow....", this.data.movies)
+    let that = this;
+    let data = {
+      start: this.data.currentPage * 20,
+      count: 20,
     }
+    if (isRefresh) {
+      that.data.movies.splice(0, that.data.movies.length)
+    }
+    request(COMING_SOON, data, function success(res) {
+      wx.hideLoading();
+      isAllowLoadMore = true;
+      var movieTemp = that.data.movies;
+      let len = res.subjects.length;
+      for (let i = 0; i < len; i++) {
+        movieTemp.push(res.subjects[i])
+      }
+      that.setData({
+        movies: movieTemp
+      })
+      console.log(that.data.movies);
+    }, function fail(res) {
+      that.data.currentPage--;
+      wx.hideLoading();
+      console.log("__fail__", res)
+      isAllowLoadMore = true;
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  bindscrolltoupper() {
+    console.log("----bindscrolltolower-------", this.data.currentPage)
+    this.data.currentPage = 0
+    console.log("----bindscrolltolower-------", this.data.currentPage)
+    this.requestData(true);
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  bindscrolltolower: function(e) {
+    console.log("----bindscrolltolower-------", this.data.currentPage)
+    if (isAllowLoadMore) {
+      isAllowLoadMore = false;
+      this.data.currentPage++;
+      // 发起请求
+      this.requestData(false);
+    }
+    
+    console.log("----bindscrolltolower-------", this.data.currentPage) 
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })
+

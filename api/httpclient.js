@@ -4,7 +4,7 @@
  */
 
 export function request(
-    url, data, 
+    url, data={}, 
     success=undefined, 
     fail=undefined, 
     method = 'GET', 
@@ -38,9 +38,13 @@ export function request(
     },
 
     fail: function (res) {
-      console.log("__error__", res)
-      if (callback) {
-        fail(res)
+      console.log("__fail__", res)
+      if (fail) {
+        wx.showToast({
+          title: '网络异常',
+          duration: 2000,
+        })
+        // fail(res)
       }
     },
   })

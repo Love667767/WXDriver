@@ -1,16 +1,19 @@
 <!--pages/douban/coming_soon/coming_soon.wxml-->
 <view style='container'>
-  <scroll-view scroll-y="true"  style="height:{{windowHeight}}px">
+  <scroll-view scroll-y="true"  style="height:{{windowHeight}}px" bindscrolltolower='bindscrolltolower' bindscrolltoupper='bindscrolltoupper'>
     <block wx:for="{{movies}}"  wx:key="movie.id"  wx:for-item="movie">
       <view class='movie-item' bindtap='bindMovieDetail'>
          <image src='{{movie.images.medium}}'class='movie-image'></image> 
          <view class='movie-text'>
-                <text>电影：{{movie.title}} {{movie.year}}</text>
-                <text>导演：{{movie.directors[0].name}}</text>
-                <view>主演：<block wx:for="{{movie.casts}}" wx:for-item="cast" wx:key="cast.id">
-                    <text>{{cast.name}}  </text>
-                  </block>
-                </view>  
+            <text>电影：{{movie.title}} {{movie.year}}</text>
+            <view>类型：<block wx:for="{{movie.genres}}" wx:for-item="genre" wx:key="genre">
+                <text>{{genre}} </text>
+              </block></view>
+            <text>导演：{{movie.directors[0].name}}</text>
+            <view>主演：<block wx:for="{{movie.casts}}" wx:for-item="cast" wx:key="cast.id">
+                <text>{{cast.name}}  </text>
+              </block>
+            </view>  
          </view>
       </view>
     </block>
