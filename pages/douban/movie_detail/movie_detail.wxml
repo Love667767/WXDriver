@@ -4,18 +4,17 @@
       <image wx:if="{{movie.images.large}}" src='{{movie.images.large}}' class='movie-image'></image>
   </view>
 
-
   <view class='movie-header-container'>
     <view class='movie-desc-container'>
       <text class='movie-title'>{{movie.title}}</text>
       <text class='movie-desc'>{{movie.year}}/{{movie.genres}}</text>
-      <text class='movie-desc'>原名：{{movie.original_title}}</text>
-      <text class='movie-desc'>国家：{{movie.countries}}</text>
+      <text class='movie-desc' wx:if="{{movie.original_title}}">原名：{{movie.original_title}}</text>
+      <text class='movie-desc' wx:if="{{movie.countries}}">国家：{{movie.countries}}</text>
     </view>
 
     <view class='move-star-container'>
       <text>{{movie.rating.average}}</text>
-      <text class='movie-star'>{{movie.rating.stars}}人</text>
+      <text class='movie-star' wx:if="{{movie.rating.stars}}">{{movie.rating.stars}}人</text>
     </view>
   </view>
 
