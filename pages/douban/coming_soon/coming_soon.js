@@ -19,6 +19,7 @@ Page({
     windowHeight: app.globalData.screenHeight,
     movies: [],
     currentPage: 0,
+    movie_id: "",
   },
 
   /**
@@ -28,9 +29,10 @@ Page({
     this.requestData(false);
   },
 
-  bindMovieDetail() {
+  bindMovieDetail(e) {
+    console.log('__ movie_id __', e.currentTarget.id);
     wx.navigateTo({
-      url: '../movie_detail/movie_detail',
+      url: `../movie_detail/movie_detail?movie_id=${e.currentTarget.id}`,
     })
   },
 

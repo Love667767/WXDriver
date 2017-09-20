@@ -2,5 +2,6 @@
   "navigationBarTitleText": "正在热映",
   "backgroundTextStyle": "light",
   "navigationBarBackgroundColor": "#5ad500",
-  "navigationBarTextStyle": "black"
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": "true"
 }

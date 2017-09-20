@@ -1,12 +1,15 @@
 {
   "pages": [
+    
     "pages/douban/coming_soon/coming_soon",
+    "pages/douban/movie_detail/movie_detail",
+    
     "pages/index/index",
     "pages/douban/douban",
     "pages/douban/in_theaters/in_theaters",
     "pages/douban/new_movies/new_movies",
-    "pages/douban/weekly/weekly",
-    "pages/douban/movie_detail/movie_detail"
+    "pages/douban/weekly/weekly"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",

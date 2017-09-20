@@ -1,1 +1,9 @@
-{}
+{
+
+    "navigationBarTitleText": "详情页",
+    "backgroundColor": "#ffffff",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50,
+    "backgroundTextStyle": "loading light"
+
+}

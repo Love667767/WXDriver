@@ -1,2 +1,51 @@
 <!--pages/douban/movie_detail/movie_detail.wxml-->
-<text>pages/douban/movie_detail/movie_detail.wxml</text>
+<view style='container'>
+  <view class='movie-image-container'>  
+      <image wx:if="{{movie.images.large}}" src='{{movie.images.large}}' class='movie-image'></image>
+  </view>
+
+
+  <view class='movie-header-container'>
+    <view class='movie-desc-container'>
+      <text class='movie-title'>{{movie.title}}</text>
+      <text class='movie-desc'>{{movie.year}}/{{movie.genres}}</text>
+      <text class='movie-desc'>原名：{{movie.original_title}}</text>
+      <text class='movie-desc'>国家：{{movie.countries}}</text>
+    </view>
+
+    <view class='move-star-container'>
+      <text>{{movie.rating.average}}</text>
+      <text class='movie-star'>{{movie.rating.stars}}人</text>
+    </view>
+  </view>
+
+  <view class='movie-btn-container'>
+    <text class='movie-btn' bindtap='bindWant2See'>想看</text>
+    <text class='movie-btn' bindtap='bindSeen'>看过</text>
+  </view>
+
+
+  <view class='movie-body'>
+    <view>
+      <text class='hint-color'>简介</text>
+    </view>
+    <text class='movie-summary'>  {{movie.summary}}</text>
+    
+    <view>
+      <text class='hint-color' style='margin-top:30rpx'>演员</text>
+    </view>
+    
+    <scroll-view scroll-x="true" class='cast-container'>
+      <block wx:for="{{movie.casts}}" wx:for-item="cast" wx:key="{{cast.id}}" >
+        <view class='movie-cast-container' bindtap='bindCast' id='{{cast.id}}'>
+          <view class='movie-cast'>
+            <image src='{{cast.avatars.medium}}' class='cast-image'/>
+            <text class='cast-name'>{{cast.name}}</text>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+</view>
+

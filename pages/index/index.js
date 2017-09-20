@@ -60,6 +60,11 @@ Page({
       })
     }
   },
+
+  onPullDownRefresh: function () {
+    console.log("------")
+  },
+  
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
