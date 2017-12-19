@@ -2,7 +2,7 @@
 // 导入Api模块
 import { COMING_SOON } from "../../../api/apiConfig"
 
-import { request } from "../../../api/httpclient"
+import { httpGet } from "../../../api/httpclient"
 
 const app = getApp();
 
@@ -43,30 +43,33 @@ Page({
     })
 
     let that = this;
-    let data = {
-      start: this.data.currentPage * 20,
-      count: 20,
-    }
     if (isRefresh) {
       that.data.movies.splice(0, that.data.movies.length)
     }
-    request(COMING_SOON, data, function success(res) {
-      wx.hideLoading();
-      isAllowLoadMore = true;
-      var movieTemp = that.data.movies;
-      let len = res.subjects.length;
-      for (let i = 0; i < len; i++) {
-        movieTemp.push(res.subjects[i])
+    httpGet(COMING_SOON, {
+      params: {
+        start: this.data.currentPage * 20,
+        count: 20,
+      },
+      success: function(res) {
+        wx.hideLoading();
+        isAllowLoadMore = true;
+        var movieTemp = that.data.movies;
+        let len = res.subjects.length;
+        for (let i = 0; i < len; i++) {
+          movieTemp.push(res.subjects[i])
+        }
+        that.setData({
+          movies: movieTemp
+        })
+        console.log(that.data.movies);
+      },
+      fail: function(res) {
+        that.data.currentPage--;
+        wx.hideLoading();
+        console.log("__fail__", res)
+        isAllowLoadMore = true;
       }
-      that.setData({
-        movies: movieTemp
-      })
-      console.log(that.data.movies);
-    }, function fail(res) {
-      that.data.currentPage--;
-      wx.hideLoading();
-      console.log("__fail__", res)
-      isAllowLoadMore = true;
     })
   },
 

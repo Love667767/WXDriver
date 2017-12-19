@@ -1,47 +1,45 @@
 {
   "pages": [
-    
+    "pages/movie/movie_home",
     "pages/douban/coming_soon/coming_soon",
     "pages/douban/movie_detail/movie_detail",
-    
     "pages/index/index",
     "pages/douban/douban",
     "pages/douban/in_theaters/in_theaters",
     "pages/douban/new_movies/new_movies",
     "pages/douban/weekly/weekly"
-   
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#5ad500",
+    "navigationBarBackgroundColor": "#40b03e",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/index/index",
-        "iconPath": "images/in_theaters.png",
-        "selectedIconPath": "images/in_theaters_sel.png",
-        "text": "正在热映"
+        "pagePath": "pages/movie/movie_home",
+        "iconPath": "images/tab_movie_unselected.png",
+        "selectedIconPath": "images/tab_movie_selected.png",
+        "text": "电影"
       },
       {
         "pagePath": "pages/douban/coming_soon/coming_soon",
-        "iconPath": "images/coming_soon.png",
-        "selectedIconPath": "images/coming_soon_sel.png",
-        "text": "即将上映"
+        "iconPath": "images/tab_book_unselected.png",
+        "selectedIconPath": "images/tab_book_selected.png",
+        "text": "图书"
       },
       {
         "pagePath": "pages/douban/new_movies/new_movies",
-        "iconPath": "images/new_movies.png",
-        "selectedIconPath": "images/new_movies_sel.png",
-        "text": "新片"
+        "iconPath": "images/tab_joke_unselected.png",
+        "selectedIconPath": "images/tab_joke_selected.png",
+        "text": "段子"
       },
       {
-        "pagePath": "pages/douban/weekly/weekly",
-        "iconPath": "images/weekly.png",
-        "selectedIconPath": "images/weekly_sel.png",
-        "text": "口碑榜"
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tab_mine_unselected.png",
+        "selectedIconPath": "images/tab_mine_selected.png",
+        "text": "我的"
       }
     ]
   },

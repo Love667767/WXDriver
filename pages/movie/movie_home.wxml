@@ -1,0 +1,14 @@
+<!--pages/movie/movie_home.wxml-->
+<view class="section">
+   <swiper indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" mode="center" class="slide-image" width="420" height="150"/>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  
+ 
+</view>

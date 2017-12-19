@@ -2,9 +2,7 @@
 
 // 导入Api模块
 import { MOVIE_DETAIL } from "../../../api/apiConfig"
-
-import { request } from "../../../api/httpclient"
-
+import { httpGet } from "../../../api/httpclient"
 
 const bapp = getApp();
 
@@ -30,19 +28,23 @@ Page({
     })
     
     let url_detail = MOVIE_DETAIL + options.movie_id
-    // let url_detail = MOVIE_DETAIL + "27132379"
-    request(url_detail, {}, function success(res) {
-      wx.hideLoading();
-      console.log(res)
-      that.setData({
-        movie: res,
-      })
-      wx.setNavigationBarTitle({
-        title: res.title,
-      })
-      console.log(that.data)
-    }, function fail(res) {
-      wx.hideLoading();
+
+    httpGet(url_detail, {
+      params: {},
+      success: function (res) {
+        wx.hideLoading();
+        console.log(res)
+        that.setData({
+          movie: res,
+        })
+        wx.setNavigationBarTitle({
+          title: res.title,
+        })
+        console.log(that.data)
+      },
+      fail: function (res) {
+        wx.hideLoading();
+      }
     })
   },
 

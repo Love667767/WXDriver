@@ -3,60 +3,51 @@
  * 网络请求
  */
 
-export function request(
-    url, data={}, 
-    success=undefined, 
-    fail=undefined, 
-    method = 'GET', 
-    ) {
+var requestHandler = {
+  params: {},
+  success: function (res) {
+    // success
+  },
+  fail: function (res) {
+    // fail
+  },
+}
 
-  if (typeof success != undefined && typeof success != 'function') {
-    throw new Error("type of success must be define a function...")
-  }
-  if (typeof fail != undefined && typeof fail != 'function') {
-    throw new Error("type of fail must be define a function...")
-  }
-  console.log('__requestUrl__', url, '\n__requestParams__', data)
+//GET请求
+export function httpGet(url, requestHandler) {
+  request('GET', url, requestHandler)
+}
+//POST请求
+export function httpPost(url, requestHandler) {
+  request('POST', url, requestHandler)
+}
+
+function request(method, url, requestHandler) {
+  console.log('__url__', url)
+  var params = requestHandler.params;
 
   wx.request({
     url: url,
-    data: data,
+    data: params,
     header: {
       'content-type': 'json' // 默认值
     },
     method: method,
-    
-    success: function (res) {
+
+    success: function (res) { 
       console.log('__response__', res)
-      let httpCode = res.statusCode
-        if (success && httpCode == 200) {
-          success(res.data)
-        }
-        if (fail && httpCode != 200) {
-          fail(res.data)
-        }
+      if (res.statusCode == 200) {
+        requestHandler.success(res.data)
+      } else {
+        requestHandler.fail(res.data)
+      }
     },
 
     fail: function (res) {
       console.log("__fail__", res)
-      if (fail) {
-        wx.showToast({
-          title: '网络异常',
-          duration: 2000,
-        })
-        // fail(res)
-      }
+      requestHandler.fail(res.data)
     },
+
+    complete: function (res) { },
   })
 }
-
-
-
-
-
-
-
-
-
-
-
